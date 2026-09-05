@@ -1,0 +1,4 @@
+# Only needed when DATABASE_URL points at Postgres (Neon / Supabase).
+# Left unpinned to a minor version so the build keeps working as new Python
+# releases arrive — a hard pin breaks whenever the wheel lags a new Python.
+psycopg[binary]>=3.2,<4

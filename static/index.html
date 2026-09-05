@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>MAC Admin Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+<link rel="stylesheet" href="/app.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231A1A2E'/><text x='16' y='22' font-size='15' font-family='Inter,sans-serif' font-weight='800' fill='%23F97316' text-anchor='middle'>M</text></svg>" />
+</head>
+<body>
+
+<!-- ==================== PASSPORT INTRO ====================
+     The same stamp animation as maclesotho.com. It plays once per browser
+     session, is skipped entirely for anyone who prefers reduced motion, and
+     never blocks: the sign-in form is usable underneath it the whole time. -->
+<div id="intro" class="intro" aria-hidden="true">
+  <div class="passport-book">
+    <div class="passport-emblem">🛂</div>
+    <div class="passport-title">Kingdom of Lesotho<br />Migration Advisory</div>
+    <div class="passport-lines">
+      <div class="passport-line"></div>
+      <div class="passport-line"></div>
+      <div class="passport-line"></div>
+    </div>
+    <div class="stamp-wrapper">
+      <div class="stamp">
+        <div class="stamp-flash"></div>
+        <div class="stamp-text-top">MAC Lesotho</div>
+        <div class="stamp-approved">Approved</div>
+        <div class="stamp-date">Staff Portal</div>
+      </div>
+    </div>
+  </div>
+  <div class="intro-tagline">Safe &amp; Legal Migration</div>
+</div>
+
+<!-- ============================ SIGN IN ============================ -->
+<div id="signin" class="signin">
+  <div class="signin-panel">
+    <div class="signin-brand">
+      <img src="/logo.png" alt="Migration Advisory Centre" class="signin-logo"
+           onerror="this.style.display='none';
+                    document.getElementById('crestFallback').style.display='block';" />
+      <div class="crest" id="crestFallback" aria-hidden="true" style="display:none">
+        <svg viewBox="0 0 44 44" width="44" height="44">
+          <path d="M22 2 L40 9 v14c0 9-7.6 16.2-18 19C11.6 39.2 4 32 4 23V9z"
+                fill="none" stroke="currentColor" stroke-width="2.2"/>
+          <path d="M14 22.5 l5.5 5.5 L30.5 17" fill="none" stroke="currentColor"
+                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Migration Advisory Centre</h1>
+        <p>Staff portal — Maseru, Lesotho</p>
+      </div>
+    </div>
+
+    <form id="loginForm" class="signin-form" autocomplete="on">
+      <div class="field">
+        <label class="lbl" for="email">Work email</label>
+        <input class="inp" id="email" type="email" autocomplete="username"
+               placeholder="you@maclesotho.com" required />
+      </div>
+      <div class="field">
+        <label class="lbl" for="password">Password</label>
+        <input class="inp" id="password" type="password"
+               autocomplete="current-password" required />
+      </div>
+      <div id="loginMsg" class="notice" hidden></div>
+      <button class="btn btn-primary btn-block" id="loginBtn" type="submit">
+        Sign in
+      </button>
+      <p class="signin-foot">
+        This portal holds confidential client information. Access is limited to
+        authorised MAC staff and every action is logged.
+      </p>
+    </form>
+    <div class="signin-ver" id="signinVer"></div>
+  </div>
+</div>
+
+<!-- ============================= PORTAL ============================= -->
+<div id="app" class="app" hidden>
+  <aside class="sidebar" id="sidebar">
+    <div class="side-brand">
+      <img src="/logo.png" alt="" class="side-logo"
+           onerror="this.style.display='none';
+                    document.getElementById('sideMark').style.display='grid';" />
+      <span class="side-crest" id="sideMark" aria-hidden="true"
+            style="display:none">M</span>
+      <span>
+        <b>MAC</b>
+        <i>Admin portal</i>
+      </span>
+    </div>
+    <nav id="nav" class="nav"></nav>
+    <div class="side-foot">
+      <div id="whoName" class="who-name"></div>
+      <div id="whoRole" class="who-role"></div>
+      <div id="verLabel" class="who-ver"></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn burger" id="burger" aria-label="Open menu">☰</button>
+      <h2 id="pageTitle">Dashboard</h2>
+      <div class="topbar-right">
+        <div class="search-wrap">
+          <input class="inp search" id="globalSearch" type="search"
+                 placeholder="Search clients, cases, references…"
+                 aria-label="Search" />
+          <div class="search-results" id="searchResults" hidden></div>
+        </div>
+        <span class="avatar" id="avatar"></span>
+      </div>
+    </header>
+    <main id="view" class="view"></main>
+  </div>
+  <div class="backdrop" id="backdrop"></div>
+</div>
+
+<div class="modal-root" id="modalRoot" hidden>
+  <div class="modal-back" id="modalBack"></div>
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h3 id="modalTitle"></h3>
+      <button class="icon-btn" id="modalX" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot" id="modalFoot"></div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
