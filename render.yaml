@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: mac-admin-portal
+    runtime: python
+    # Pinned: the newest Python often has no psycopg binary wheel yet.
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 server.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: DATABASE_URL          # Neon  (primary)   - set the value in the dashboard
+        sync: false
+      - key: MIRROR_DATABASE_URL   # Supabase (backup) - set the value in the dashboard
+        sync: false
+      - key: ADMIN_EMAIL
+        value: admin@maclesotho.com
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: INTAKE_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        value: https://maclesotho.com,https://www.maclesotho.com
+      - key: MIRROR_EVERY_MIN
+        value: "30"
+      - key: PYTHON_VERSION
+        value: "3.12.7"
